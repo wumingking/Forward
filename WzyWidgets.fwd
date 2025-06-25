@@ -14,7 +14,7 @@
     },
     {
       "id": "zhuijurili",
-      "title": "追剧日历(今/明日播出、各项榜单、今日推荐)",
+      "title": "追剧日历",
       "description": "解析追剧日历今/明日播出剧集/番剧/国漫/综艺、各项榜单、今日推荐等",
       "requiredVersion": "0.0.1",
       "version": "1.0.3",
@@ -23,7 +23,7 @@
     },
     {
       "id": "yatu",
-      "title": "雅图(每日放送+点播排行榜+评分排行榜)",
+      "title": "雅图",
       "description": "解析雅图每日放送更新以及各类排行榜",
       "requiredVersion": "0.0.1",
       "version": "1.0.6",
@@ -41,7 +41,7 @@
     },
     {
       "id": "bangumi_charts_tmdb_v3",
-      "title": "Bangumi 热门榜单",
+      "title": "Bangumi",
       "description": "获取Bangumi近期热门、每日放送数据，支持榜单筛选。",
       "requiredVersion": "0.0.1",
       "version": "2.0.0", 

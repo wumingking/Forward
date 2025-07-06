@@ -60,7 +60,7 @@
     {
       "id": "gerenzuopin",
       "title": "个人作品",
-      "description": "获取 TMDB 的榜单数据",
+      "description": "获取 TMDB 个人相关作品数据",
       "requiredVersion": "0.0.1",
       "version": "1.0.4",
       "author": "Evan",

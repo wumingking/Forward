@@ -1,0 +1,14 @@
+{
+  "name": "forword艺术字模块图标",
+  "description": "nori-emby",
+  "icons": [
+    {
+      "name": "白鹿",
+      "url": "https://raw.githubusercontent.com/nori5555/nori-emby/main/icons/lyrebird.png"
+    },
+    {
+      "name": "孟子义",
+      "url": "https://raw.githubusercontent.com/nori5555/nori-emby/main/icons/Temby.png"
+    }
+  ]
+}

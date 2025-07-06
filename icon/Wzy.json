@@ -1,6 +1,5 @@
 {
-  "name": "forword艺术字模块图标",
-  "description": "nori-emby",
+  "name": "WForward",
   "icons": [
     {
       "name": "白鹿",
@@ -9,6 +8,42 @@
     {
       "name": "孟子义",
       "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/孟子义.png"
+    },
+    {
+      "name": "刘浩存",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/刘浩存.png"
+    },
+    {
+      "name": "卢昱晓",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/卢昱晓.png"
+    },
+    {
+      "name": "周也",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/周也.png"
+    },
+    {
+      "name": "宋祖儿",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/宋祖儿.png"
+    },
+    {
+      "name": "王楚然",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/王楚然.png"
+    },
+    {
+      "name": "田曦薇",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/田曦薇.png"
+    },
+    {
+      "name": "虞书欣",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/虞书欣.png"
+    },
+    {
+      "name": "陈都灵",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/陈都灵.png"
+    },
+    {
+      "name": "张若昀",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/张若昀.png"
     }
   ]
 }

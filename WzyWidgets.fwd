@@ -58,13 +58,13 @@
       "url": "https://raw.githubusercontent.com/opix-maker/Forward/refs/heads/main/js/IMDb.js"
     },
     {
-      "id": "person.movie.tmdb",
-      "title": "TMDB人物影视作品",
+      "id": "gerenzuopin",
+      "title": "个人作品",
       "description": "获取 TMDB 的榜单数据",
       "requiredVersion": "0.0.1",
       "version": "1.0.4",
       "author": "Evan",
-      "url": "https://github.com/EmrysChoo/ForwardWidgets/raw/refs/heads/main/Widgets/person_movie.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/gerenzuopin.js"
     },
     {
       "id": "ti.bemarkt.vod.maccms",

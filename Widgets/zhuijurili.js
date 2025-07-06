@@ -175,7 +175,7 @@ WidgetMetadata = {
     requiredVersion: "0.0.1",
     description: "解析追剧日历今/明日播出剧集/番剧/国漫/综艺、各项榜单、今日推荐等",
     author: "huangxd",
-    site: "https://github.com/huangxd-/ForwardWidgets"
+    site: "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets"
 };
 
 const API_SUFFIXES = {

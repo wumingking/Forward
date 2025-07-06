@@ -1,17 +1,18 @@
 // =============UserScript=============
 // @name         影视聚合查询组件
-// @version      1.2.6
+// @version      1.2.7
 // @description  聚合查询豆瓣/TMDB/IMDB/BGM影视数据
 // @author       阿米诺斯
 // =============UserScript=============
 WidgetMetadata = {
   id: "yingshibangdan",
   title: "影视榜单",
-  description: "聚合豆瓣、TMDB、IMDB和Bangumi的电影、剧集、动画片单与榜单",
+  description: "聚合豆瓣、TMDB、IMDB和Bangumi的影视动画榜单",
   author: "阿米诺斯",
-  site: "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets",
-  version: "1.2.6",
+  site: "https://github.com/quantumultxx/FW-Widgets",
+  version: "1.2.7",
   requiredVersion: "0.0.1",
+  detailCacheDuration: 60,
   modules: [
     // =============豆瓣模块=============
     // --- 🔥 实时热点 ---
@@ -20,6 +21,7 @@ WidgetMetadata = {
       description: "来自豆瓣的当前热门电影榜单",
       requiresWebView: false,
       functionName: "loadDoubanItemsFromApi",
+      cacheDuration: 3600,
       params: [
         { name: "url", 
           title: "🔗 列表地址", 
@@ -38,6 +40,7 @@ WidgetMetadata = {
       description: "来自豆瓣的当前热门剧集榜单",
       requiresWebView: false,
       functionName: "loadDoubanItemsFromApi",
+      cacheDuration: 3600,
       params: [
         { name: "url", 
           title: "🔗 列表地址", 
@@ -58,6 +61,7 @@ WidgetMetadata = {
       description: "豆瓣评分最高的 250 部电影",
       requiresWebView: false,
       functionName: "loadDoubanCardItems",
+      cacheDuration: 3600,
       params: [
         { name: "url", 
           title: "🔗 列表地址", 
@@ -72,6 +76,7 @@ WidgetMetadata = {
       description: "加载豆瓣官方榜单或用户豆列 (需输入 URL)",
       requiresWebView: false,
       functionName: "loadDoubanCardItems",
+      cacheDuration: 3600,
       params: [
         {
           name: "url", 
@@ -100,6 +105,7 @@ WidgetMetadata = {
       description: "按分类、地区、类型标签浏览豆瓣推荐电影",
       requiresWebView: false,
       functionName: "loadDoubanRecommendMovies",
+      cacheDuration: 3600,
       params: [
         {
           name: "category", 
@@ -141,21 +147,32 @@ WidgetMetadata = {
           },
           enumOptions: [
             { title: "全部", value: "" },
-            { title: "动作", value: "动作" }, 
-            { title: "科幻", value: "科幻" }, 
-            { title: "爱情", value: "爱情" }, 
-            { title: "喜剧", value: "喜剧" }, 
-            { title: "悬疑", value: "悬疑" }, 
-            { title: "动画", value: "动画" }, 
-            { title: "剧情", value: "剧情" }, 
-            { title: "家庭", value: "家庭" }, 
-            { title: "犯罪", value: "犯罪" }, 
-            { title: "歌舞", value: "歌舞" }, 
-            { title: "传记", value: "传记" }, 
-            { title: "冒险", value: "冒险" }, 
-            { title: "武侠", value: "武侠" }, 
-            { title: "运动", value: "运动" }, 
+            { title: "动作", value: "动作" },
+            { title: "科幻", value: "科幻" },
+            { title: "灾难", value: "灾难" },
+            { title: "爱情", value: "爱情" },
+            { title: "喜剧", value: "喜剧" },
+            { title: "悬疑", value: "悬疑" },
+            { title: "犯罪", value: "犯罪" },
+            { title: "冒险", value: "冒险" },
+            { title: "奇幻", value: "奇幻" },
+            { title: "战争", value: "战争" },
+            { title: "历史", value: "历史" },
+            { title: "武侠", value: "武侠" },
+            { title: "惊悚", value: "惊悚" },
+            { title: "恐怖", value: "恐怖" },
+            { title: "情色", value: "情色" },
+            { title: "动画", value: "动画" },
+            { title: "剧情", value: "剧情" },
+            { title: "西部", value: "西部" },
+            { title: "家庭", value: "家庭" },
+            { title: "儿童", value: "儿童" },
+            { title: "音乐", value: "音乐" },
+            { title: "运动", value: "运动" },
             { title: "古装", value: "古装" },
+            { title: "歌舞", value: "歌舞" },
+            { title: "传记", value: "传记" },
+            { title: "短片", value: "短片" },
             { title: "纪录片", value: "纪录片" }
           ]
         },
@@ -180,6 +197,7 @@ WidgetMetadata = {
       description: "按分类、类型浏览豆瓣推荐剧集",
       requiresWebView: false,
       functionName: "loadDoubanRecommendShows",
+      cacheDuration: 3600,
       params: [
         {
           name: "type", 
@@ -208,6 +226,7 @@ WidgetMetadata = {
         description: "当前影院或流媒体上映的电影/剧集",
         requiresWebView: false,
         functionName: "tmdbNowPlaying",
+        cacheDuration: 3600,
         params: [
             { 
                 name: "type", 
@@ -228,6 +247,7 @@ WidgetMetadata = {
         description: "今日热门电影与剧集",
         requiresWebView: false,
         functionName: "tmdbTrending",
+        cacheDuration: 900,
         params: [
             { name: "time_window", 
               title: "时间", 
@@ -242,6 +262,7 @@ WidgetMetadata = {
         description: "本周热门电影与剧集",
         requiresWebView: false,
         functionName: "tmdbTrending",
+        cacheDuration: 900,
         params: [
             { name: "time_window", 
               title: "时间", 
@@ -258,6 +279,7 @@ WidgetMetadata = {
         description: "高分电影或剧集 (按用户评分排序)",
         requiresWebView: false,
         functionName: "tmdbTopRated",
+        cacheDuration: 3600,
         params: [
             { 
                 name: "type", 
@@ -280,6 +302,7 @@ WidgetMetadata = {
         description: "按播出平台和内容类型筛选剧集内容",
         requiresWebView: false,
         functionName: "tmdbDiscoverByNetwork",
+        cacheDuration: 3600,
         params: [
             {
                 name: "with_networks",
@@ -380,6 +403,7 @@ WidgetMetadata = {
       id: "companies",
       title: "TMDB 出品公司",
       functionName: "tmdbCompanies",
+      cacheDuration: 3600,
       params: [
         {
           name: "with_companies",
@@ -437,7 +461,6 @@ WidgetMetadata = {
             { title: "爱情", value: "10749" },
             { title: "犯罪", value: "80" },
             { title: "科幻", value: "878" },
-            { title: "记录", value: "99" },
             { title: "西部", value: "37" },
             { title: "音乐", value: "10402" },
             { title: "电视电影", value: "10770" }
@@ -479,6 +502,7 @@ WidgetMetadata = {
         description: "即将上映的电影 (可筛选)",
         requiresWebView: false,
         functionName: "tmdbUpcomingMovies",
+        cacheDuration: 3600,
         params: [
             { name: "language", title: "语言", type: "language", value: "zh-CN" },
             { 
@@ -569,6 +593,7 @@ WidgetMetadata = {
       description: "IMDb 用户评分最高的 250 部电影",
       requiresWebView: false,
       functionName: "loadImdbCardItems",
+      cacheDuration: 3600,
       params: [
         { name: "url", 
           title: "🔗 列表地址", 
@@ -583,6 +608,7 @@ WidgetMetadata = {
       description: "IMDb 用户评分最高的 250 部剧集",
       requiresWebView: false,
       functionName: "loadImdbCardItems",
+      cacheDuration: 3600,
       params: [
         { name: "url", 
           title: "🔗 列表地址", 
@@ -597,6 +623,7 @@ WidgetMetadata = {
       description: "解析 IMDB 热门电影/剧集等网页片单 (需输入 URL)",
       requiresWebView: false,
       functionName: "loadImdbCardItems",
+      cacheDuration: 3600,
       params: [
         {
           name: "url", 
@@ -620,6 +647,7 @@ WidgetMetadata = {
     description: "浏览近期热门动画",
     requiresWebView: false,
     functionName: "fetchRecentHot_bg",
+    cacheDuration: 3600,
     params: [
         { name: "page", title: "页码", type: "page" }
     ]
@@ -629,6 +657,7 @@ WidgetMetadata = {
     description: "按年份、季度/全年、标签、分类、题材、地区、受众等浏览动画排行，并可按作品名筛选",
     requiresWebView: false,
     functionName: "fetchAirtimeRanking_bg",
+    cacheDuration: 3600,
     params: [
         { 
             name: "type", 
@@ -785,6 +814,7 @@ WidgetMetadata = {
     requiresWebView: false,
     functionName: "fetchDailyCalendarApi_bg",
     sectionMode: false,
+    cacheDuration: 3600,
     params: [
         {
             name: "filterType",
@@ -848,6 +878,7 @@ WidgetMetadata = {
     description: "按标签、年份、月份浏览动画列表，支持排序和分页。",
     requiresWebView: false,
     functionName: "fetchBangumiTagPage_bg",
+    cacheDuration: 3600,
     params: [
         {
             name: "tag_keyword", 
@@ -990,11 +1021,18 @@ function calculatePagination(params) {
     return { page, limit, start };
 }
 
-function getCurrentDate() {
+function getBeijingDate() {
     const now = new Date();
-    return now.toISOString().split('T')[0];
+    
+    const beijingTime = now.getTime() + (8 * 60 * 60 * 1000);
+    const beijingDate = new Date(beijingTime);
+    
+    const year = beijingDate.getUTCFullYear();
+    const month = String(beijingDate.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(beijingDate.getUTCDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
 }
-
 // ===============豆瓣功能函数===============
 async function loadDoubanCardItems(params = {}) {
   try {
@@ -1229,43 +1267,48 @@ async function loadDoubanRecommendItems(params = {}, mediaType = "movie") {
 //===============TMDB功能函数===============
 async function fetchTmdbData(api, params) {
     try {
-        const tmdbParams = { ...params };
-        delete tmdbParams.type;
-        delete tmdbParams.time_window;
-        const response = await Widget.tmdb.get(api, { params: tmdbParams });
-        if (!response?.results) {
-            throw new Error(response?.status_message || "无效的API响应格式");
+        const response = await Widget.tmdb.get(api, { params: params });
+
+        if (!response) {
+            throw new Error("获取数据失败");
         }
-        return response.results
-        .map(item => {
-            const isMovie = api.includes('movie') || item.media_type === 'movie';
-            const mediaType = isMovie ? 'movie' : 'tv';
-            return {
-                id: item.id,
-                type: "tmdb",
-                mediaType: mediaType,
-                title: isMovie ? item.title : item.name,
-                description: formatItemDescription({
+
+        const data = response.results;
+        
+        return data
+            .filter(item => {
+                const hasPoster = item.poster_path;
+                const hasTitle = item.title || item.name;
+                const hasValidId = Number.isInteger(item.id);
+                
+                return hasPoster && hasTitle && hasValidId;
+            })
+            .map((item) => {
+                let mediaType = item.media_type;
+                
+                if (!mediaType) {
+                    if (item.title) mediaType = "movie";
+                    else if (item.name) mediaType = "tv";
+                }
+                
+                return {
+                    id: item.id,
+                    type: "tmdb",
+                    title: item.title || item.name,
                     description: item.overview,
-                    rating: item.vote_average ? (item.vote_average / 2).toFixed(1) : undefined,
-                    releaseDate: isMovie ? item.release_date : item.first_air_date
-                }),
-                releaseDate: isMovie ? item.release_date : item.first_air_date,
-                backdropPath: item.backdrop_path && `https://image.tmdb.org/t/p/original${item.backdrop_path}`,
-                posterPath: item.poster_path && `https://image.tmdb.org/t/p/original${item.poster_path}`,
-                rating: item.vote_average ? (item.vote_average / 2).toFixed(1) : undefined
-            };
-        })
-        .filter(item => 
-            item.id && 
-            item.title && 
-            item.posterPath
-        );
+                    releaseDate: item.release_date || item.first_air_date,
+                    backdropPath: item.backdrop_path,
+                    posterPath: item.poster_path,
+                    rating: item.vote_average,
+                    mediaType: mediaType || "unknown",
+                };
+            });
     } catch (error) {
-        console.error(`API调用失败: ${api}`, error);
-        return [createErrorItem(api, '数据加载失败', error)];
+        console.error("调用 TMDB API 失败:", error);
+        return [createErrorItem("tmdb-api", "API调用失败", error)];
     }
 }
+
 
 async function tmdbNowPlaying(params) {
     const type = params.type || 'movie';
@@ -1274,9 +1317,10 @@ async function tmdbNowPlaying(params) {
 }
 
 async function tmdbTrending(params) {
-    const timeWindow = params.time_window || 'day';
-    const api = `trending/all/${timeWindow}`;
-    return await fetchTmdbData(api, params);
+  const timeWindow = params.time_window;
+  const api = `trending/all/${timeWindow}`;
+  delete params.time_window;
+  return await fetchTmdbData(api, params);
 }
 
 
@@ -1288,72 +1332,90 @@ async function tmdbTopRated(params) {
 
 async function tmdbUpcomingMovies(params) {
     const api = "discover/movie";
+    const beijingDate = getBeijingDate();
     const discoverParams = {
         language: params.language || 'zh-CN',
         page: params.page || 1,
         sort_by: 'primary_release_date.asc',
-        'primary_release_date.gte': params['primary_release_date.gte'] || getCurrentDate(),
+        'primary_release_date.gte': params['primary_release_date.gte'] || beijingDate,
         with_release_type: params.with_release_type || '2,3'
     };
-    if (params['primary_release_date.lte']) discoverParams['primary_release_date.lte'] = params['primary_release_date.lte'];
-    if (params.with_genres) discoverParams.with_genres = params.with_genres;
-    if (params['vote_average.gte']) discoverParams['vote_average.gte'] = params['vote_average.gte'];
-    if (params['vote_count.gte']) discoverParams['vote_count.gte'] = params['vote_count.gte'];
-    if (params.with_keywords) discoverParams.with_keywords = params.with_keywords;
+    
+    if (params['primary_release_date.lte']) {
+        discoverParams['primary_release_date.lte'] = params['primary_release_date.lte'];
+    }
+    if (params.with_genres) {
+        discoverParams.with_genres = params.with_genres;
+    }
+    if (params['vote_average.gte']) {
+        discoverParams['vote_average.gte'] = params['vote_average.gte'];
+    }
+    if (params['vote_count.gte']) {
+        discoverParams['vote_count.gte'] = params['vote_count.gte'];
+    }
+    if (params.with_keywords) {
+        discoverParams.with_keywords = params.with_keywords;
+    }
+    
     return await fetchTmdbData(api, discoverParams);
 }
 
 async function tmdbDiscoverByNetwork(params = {}) {
     const api = "discover/tv";
+    const beijingDate = getBeijingDate();
     const discoverParams = {
         language: params.language || 'zh-CN',
         page: params.page || 1,
         with_networks: params.with_networks,
-        sort_by: params.sort_by,
-        ...(params.air_status === 'released' && { 
-            'first_air_date.lte': getCurrentDate() 
-        }),
-        ...(params.air_status === 'upcoming' && { 
-            'first_air_date.gte': getCurrentDate() 
-        }),
-        ...(params.with_genres && { with_genres: params.with_genres })
+        sort_by: params.sort_by || "first_air_date.desc",
     };
+    
+    if (params.air_status === 'released') {
+        discoverParams['first_air_date.lte'] = beijingDate;
+    } else if (params.air_status === 'upcoming') {
+        discoverParams['first_air_date.gte'] = beijingDate;
+    }
+    
+    if (params.with_genres) {
+        discoverParams.with_genres = params.with_genres;
+    }
+    
     return await fetchTmdbData(api, discoverParams);
 }
 
 async function tmdbCompanies(params = {}) {
-  try {
-    const api = "discover/movie";
-    const withCompanies = String(params.with_companies || '').trim();
+    try {
+        const api = "discover/movie";
+        const beijingDate = getBeijingDate();
+        const withCompanies = String(params.with_companies || '').trim();
 
-    const cleanParams = {
-      page: params.page || 1,
-      language: params.language || "zh-CN",
-      sort_by: params.sort_by || "primary_release_date.desc",
-    };
+        const cleanParams = {
+            page: params.page || 1,
+            language: params.language || "zh-CN",
+            sort_by: params.sort_by || "primary_release_date.desc",
+            include_adult: false,
+            include_video: false
+        };
 
-    if (withCompanies) {
-      cleanParams.with_companies = withCompanies;
+        if (withCompanies) {
+            cleanParams.with_companies = withCompanies;
+        }
+
+        if (params.air_status === 'released') {
+            cleanParams['primary_release_date.lte'] = beijingDate;
+        } else if (params.air_status === 'upcoming') {
+            cleanParams['primary_release_date.gte'] = beijingDate;
+        }
+
+        if (params.with_genres) {
+            cleanParams.with_genres = String(params.with_genres).trim();
+        }
+
+        return await fetchTmdbData(api, cleanParams);
+    } catch (error) {
+        console.error('公司数据加载失败:', error);
+        return [createErrorItem('companies', '数据加载失败', error)];
     }
-
-    const currentDate = getCurrentDate();
-    if (params.air_status === 'released') {
-      cleanParams['primary_release_date.lte'] = currentDate;
-    } else if (params.air_status === 'upcoming') {
-      cleanParams['primary_release_date.gte'] = currentDate;
-    }
-
-    if (params.with_genres) {
-      cleanParams.with_genres = String(params.with_genres).trim();
-    }
-
-    console.log('TMDB请求参数:', cleanParams);
-    return await fetchTmdbData(api, cleanParams);
-    
-  } catch (error) {
-    console.error('公司数据加载失败:', error);
-    return [createErrorItem('companies', '数据加载失败', error)];
-  }
 }
 
 //===============IMDB功能函数===============
@@ -2627,8 +2689,7 @@ async function fetchItemDetails_bg(pendingItem, categoryHint, rankingContext = {
             const bgmdEntry = bgmdMap.get(String(pendingItem.id));
 
             if (bgmdEntry && bgmdEntry.tmdbId && bgmdEntry.tmdbType) {
-                if 
-(WidgetConfig_bg.DEBUG_LOGGING) console.log(`${logPrefixDetails} Found mapping in BGMD for BGM ID ${pendingItem.id} -> TMDB ID ${bgmdEntry.tmdbId} (Type: ${bgmdEntry.tmdbType})`);
+                if (WidgetConfig_bg.DEBUG_LOGGING) console.log(`${logPrefixDetails} Found mapping in BGMD for BGM ID ${pendingItem.id} -> TMDB ID ${bgmdEntry.tmdbId} (Type: ${bgmdEntry.tmdbType})`);
                 
                 const tmdbDetail = await CacheUtil_bg.cachedOrFetch(
                     CONSTANTS_bg.CACHE_KEYS.TMDB_FULL_DETAIL,
@@ -2755,8 +2816,7 @@ async function fetchItemDetails_bg(pendingItem, categoryHint, rankingContext = {
     return item;
 }
 
-async function processBangumiPage_bg(url, categoryHint, currentPageString,
-rankingContextInfo = {}, bangumiAccessToken = null, bangumiCookie = null) { 
+async function processBangumiPage_bg(url, categoryHint, currentPageString, rankingContextInfo = {}, bangumiAccessToken = null, bangumiCookie = null) { 
     const currentPage = currentPageString ? parseInt(currentPageString, 10) : 0;
     if (WidgetConfig_bg.DEBUG_LOGGING) console.log(`${CONSTANTS_bg.LOG_PREFIX_GENERAL} [BGM页面处理_V2_DEBUG] 列表页URL: ${url}, 当前页: ${currentPage > 0 ? currentPage : '未知/1'}, Context: ${JSON.stringify(rankingContextInfo)}, HasToken: ${!!bangumiAccessToken}`); 
     

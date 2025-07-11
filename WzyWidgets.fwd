@@ -1,6 +1,6 @@
 {
   "title": "Wzy widgets",
-  "description": "自用",
+  "description": "yyds",
   "icon": "https://raw.githubusercontent.com/InchStudio/ForwardWidgets/refs/heads/master/icon.png",
   "widgets": [
     {
@@ -17,7 +17,7 @@
       "title": "追剧日历",
       "description": "解析追剧日历今/明日播出剧集/番剧/国漫/综艺、各项榜单、今日推荐等",
       "requiredVersion": "0.0.1",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zhuijurili.js"
     },

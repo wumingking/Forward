@@ -5,11 +5,11 @@
 // @author       阿米诺斯
 // =============UserScript=============
 WidgetMetadata = {
-  id: "forward.combined.media.lists",
+  id: "yingshibangdan",
   title: "影视榜单",
   description: "聚合豆瓣、TMDB、IMDB和Bangumi的影视动画榜单",
   author: "阿米诺斯",
-  site: "",
+  site: "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets",
   version: "1.2.9",
   requiredVersion: "0.0.1",
   detailCacheDuration: 60,

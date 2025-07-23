@@ -6,9 +6,9 @@
     {
       "id": "yingshibangdan",
       "title": "影视榜单",
-      "description": "聚合豆瓣、TMDB、IMDB和Bangumi的影视动画榜单",
+      "description": "TMDB、豆瓣榜单",
       "requiredVersion": "0.0.1",
-      "version": "1.3.0",
+      "version": "1.0.0",
       "author": "阿米诺斯",
       "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/yingshibangdan.js"
     },

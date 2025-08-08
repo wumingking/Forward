@@ -91,7 +91,8 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.1",
       "author": "两块",
-      "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js",
+      "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js"
+    },
     {
       "id": "lianjiedanmu",
       "title": "播放链接弹幕",

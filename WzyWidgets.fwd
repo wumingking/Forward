@@ -91,7 +91,15 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.1",
       "author": "两块",
-      "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js"
+      "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js",
+    {
+      "id": "lianjiedanmu",
+      "title": "播放链接弹幕",
+      "description": "从指定播放链接和服务器获取弹幕",
+      "requiredVersion": "0.0.2",
+      "version": "1.0.0",
+      "author": "huangxd",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/lianjiedanmu.js"
     }
   ]
 }

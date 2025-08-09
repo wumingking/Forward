@@ -15,7 +15,7 @@
 WidgetMetadata = {
   id: "lianjiedanmu",
   title: "播放链接弹幕",
-  version: "1.0.0",
+  version: "1.0.1",
   requiredVersion: "0.0.2",
   description: "从指定播放链接和服务器获取弹幕",
   author: "huangxd_",

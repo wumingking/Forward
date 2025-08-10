@@ -149,7 +149,7 @@ async function getCommentsById(params) {
   //   }
   // );
 
-  console.log(response.data);
+  // console.log(response.data);
   // const result = parseDanmakuXML(response.data);
   // console.log(result);
   return response.data;

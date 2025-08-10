@@ -17,7 +17,7 @@ WidgetMetadata = {
   title: "手动链接弹幕",
   version: "1.0.1",
   requiredVersion: "0.0.2",
-  description: "手动获取播放链接和服务器获取弹幕",
+  description: "手动获取播放链接并从服务器获取弹幕",
   author: "huangxd_",
   site: "https://github.com/coisini114/Forward/tree/de2cf29550862130415d61cb5beb5c5c8eaab411/Widgets",
   globalParams: [

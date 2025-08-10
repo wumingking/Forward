@@ -133,8 +133,8 @@ async function getCommentsById(params) {
     `${danmu_server}/?url=${title}&ac=dm`,
     {
       headers: {
-        "Content-Type": "application/xml",
-        "User-Agent": "ForwardWidgets/1.0.0",
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
       },
     }
   );
@@ -143,7 +143,7 @@ async function getCommentsById(params) {
   //   `${danmu_server}/?url=https://v.qq.com/x/cover/53q0eh78q97e4d1/x00174aq5no.html`,
   //   {
   //     headers: {
-  //       "Content-Type": "application/xml",
+  //       "Content-Type": "application/json",
   //       "User-Agent": "ForwardWidgets/1.0.0",
   //     },
   //   }

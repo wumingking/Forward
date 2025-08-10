@@ -15,7 +15,7 @@
 WidgetMetadata = {
   id: "zidonglianjiedanmu",
   title: "自动链接弹幕",
-  version: "1.0.1",
+  version: "1.0.3",
   requiredVersion: "0.0.2",
   description: "自动获取播放链接并从服务器获取弹幕",
   author: "huangxd",
@@ -45,6 +45,22 @@ WidgetMetadata = {
         {
           title: "678",
           value: "https://se.678.ooo",
+        },
+      ],
+    },
+    {
+      name: "debug",
+      title: "调试日志",
+      type: "enumeration",
+      value: "false",
+      enumOptions: [
+        {
+            title: "关",
+            value: "false",
+        },
+        {
+            title: "开",
+            value: "true",
         },
       ],
     },
@@ -106,7 +122,7 @@ async function getPlayurls(title, tmdbId, type, season) {
   }
 
   const data = response.data;
-  console.log(data);
+  // console.log(data);
 
   // 检查API返回状态
   if (data.msg !== "ok") {
@@ -171,7 +187,7 @@ async function getPlayurls(title, tmdbId, type, season) {
 
   if (animes.length > 1) {
     const tmdbInfo = await fetchTmdbData(tmdbId, type);
-    const tmdbYear = type === "tv" ? tmdbInfo.data.first_air_date.split("-")[0] : tmdbInfo.data.release_date.split("-")[0];
+    const tmdbYear = type === "tv" ? tmdbInfo.first_air_date.split("-")[0] : tmdbInfo.release_date.split("-")[0];
 
     animes = animes.filter(anime => anime.year == tmdbYear);
   }
@@ -297,11 +313,11 @@ function convertYoukuUrl(url) {
   return `https://v.youku.com/v_show/id_${vid}.html`;
 }
 
-function generateDanmaku(message) {
+function generateDanmaku(message, count) {
   const comments = [];
   const baseP = "1,1,25,16777215,1754803089,0,0,26732601000067074,1"; // 原始 p 字符串
 
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < count; i++) {
     // 增加 cid
     const cid = i;
 
@@ -328,16 +344,17 @@ function generateDanmaku(message) {
 }
 
 async function getCommentsById(params) {
-  const { danmu_server, commentId, link, videoUrl, season, episode, tmdbId, type, title } = params;
+  const { danmu_server, debug, commentId, link, videoUrl, season, episode, tmdbId, type, title } = params;
 
   const animes = await getPlayurls(title, tmdbId, type, season);
   console.log(animes.length);
 
   if (animes.length === 0) {
-    return generateDanmaku("【自动链接弹幕】：相关站点没有找到这部影视剧");
+    const count = debug === "true" ? 24 : 1;
+    return generateDanmaku("【自动链接弹幕】：相关站点没有找到这部影视剧", count);
   }
 
-  console.log(animes[0]);
+  // console.log(animes[0]);
 
   let playUrl;
   if (episode) {
@@ -369,10 +386,11 @@ async function getCommentsById(params) {
     // 捕获错误并输出
     console.error("请求失败:", error);
     // 这里你可以根据需求处理错误，比如返回特定的错误信息或状态码
-    return generateDanmaku(`【自动链接弹幕】：弹幕服务器异常 ${error.cause} ${error}`);
+    const count = debug === "true" ? 24 : 1;
+    return generateDanmaku(`【自动链接弹幕】：弹幕服务器异常 ${error.cause} ${error}`, count);
   }
 
-  console.log(response.data);
+  // console.log(response.data);
   // const result = parseDanmakuXML(response.data);
   // console.log(result);
   return response.data;

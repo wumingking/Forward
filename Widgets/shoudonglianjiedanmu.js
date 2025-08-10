@@ -14,10 +14,10 @@
  */
 WidgetMetadata = {
   id: "shoudonglianjiedanmu",
-  title: "手动播放链接弹幕",
+  title: "手动链接弹幕",
   version: "1.0.1",
   requiredVersion: "0.0.2",
-  description: "从指定播放链接和服务器获取弹幕",
+  description: "手动从指定播放链接和服务器获取弹幕",
   author: "huangxd_",
   site: "https://github.com/coisini114/Forward/tree/de2cf29550862130415d61cb5beb5c5c8eaab411/Widgets",
   globalParams: [

@@ -103,13 +103,22 @@
       "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js"
     },
     {
-      "id": "lianjiedanmu",
-      "title": "播放链接弹幕",
-      "description": "从指定播放链接和服务器获取弹幕",
+      "id": "shoudonglianjiedanmu",
+      "title": "手动链接弹幕",
+      "description": "手动从指定播放链接和服务器获取弹幕",
       "requiredVersion": "0.0.2",
       "version": "1.0.1",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/lianjiedanmu.js"
+    },
+    {
+      "id": "zidonglianjiedanmu",
+      "title": "自动链接弹幕",
+      "description": "自动从指定播放链接和服务器获取弹幕",
+      "requiredVersion": "0.0.2",
+      "version": "1.0.1",
+      "author": "huangxd",
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
     }
   ]
 }

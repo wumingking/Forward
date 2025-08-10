@@ -105,7 +105,7 @@
     {
       "id": "shoudonglianjiedanmu",
       "title": "手动链接弹幕",
-      "description": "手动从指定播放链接和服务器获取弹幕",
+      "description": "手动输入播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
       "version": "1.0.1",
       "author": "huangxd",
@@ -114,9 +114,9 @@
     {
       "id": "zidonglianjiedanmu",
       "title": "自动链接弹幕",
-      "description": "自动从指定播放链接和服务器获取弹幕",
+      "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.0.1",
+      "version": "1.0.0",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
     }

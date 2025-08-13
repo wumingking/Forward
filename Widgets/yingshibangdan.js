@@ -3,7 +3,7 @@ WidgetMetadata = {
   title: "影视榜单",
   description: "TMDB、豆瓣榜单",
   author: "阿米诺斯",
-  site: "https://github.com/coisini114/Forward/tree/de2cf29550862130415d61cb5beb5c5c8eaab411/Widgets",
+  site: "https://raw.githubusercontent.com/wumingking",
   version: "1.0.0",
   requiredVersion: "0.0.1",
   detailCacheDuration: 60,

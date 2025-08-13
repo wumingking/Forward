@@ -200,7 +200,7 @@ WidgetMetadata = {
     requiredVersion: "0.0.1",
     description: "解析雅图每日放送更新以及各类排行榜",
     author: "huangxd",
-    site: "https://github.com/huangxd-/ForwardWidgets"
+    site: "https://raw.githubusercontent.com/wumingking/Forward"
 };
 
 // 基础获取TMDB数据方法

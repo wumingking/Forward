@@ -5,7 +5,7 @@ WidgetMetadata = {
   requiredVersion: "0.0.1",
   description: "获取 TMDB 个人相关作品数据",
   author: "Evan",
-  site: "https://github.com/coisini114",
+  site: "https://raw.githubusercontent.com/wumingking",
   cacheDuration: 172800,
   modules: [
     {

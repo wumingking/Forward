@@ -10,7 +10,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.0",
       "author": "阿米诺斯",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/yingshibangdan.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/yingshibangdan.js?token=GHSAT0AAAAAADIXDEGVM7LKUS62IQIQW5SW2E4PP2A"
     },
     {
       "id": "zhuijurili",
@@ -19,7 +19,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.4",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zhuijurili.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zhuijurili.js?token=GHSAT0AAAAAADIXDEGVI4CK5PM3QIE53ZPQ2E4PQGA"
     },
     {
       "id": "yatu",
@@ -28,7 +28,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.6",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/yatu.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/yatu.js?token=GHSAT0AAAAAADIXDEGUFKI6Q5QHYRRJC2JC2E4PPJQ"
     },
     {
       "id": "hot_picks",
@@ -64,7 +64,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.4",
       "author": "Evan",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/gerenzuopin.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/gerenzuopin.js?token=GHSAT0AAAAAADIXDEGVHHKKDHHCX3PQ3PEE2E4PNTQ"
     },
     {
       "id": "wuming.VOD",
@@ -109,7 +109,7 @@
       "requiredVersion": "0.0.2",
       "version": "1.0.2",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/shoudonglianjiedanmu.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/shoudonglianjiedanmu.js?token=GHSAT0AAAAAADIXDEGUF5L6NZDEJT662JV62E4POZQ"
     },
     {
       "id": "zidonglianjiedanmu",
@@ -118,7 +118,7 @@
       "requiredVersion": "0.0.2",
       "version": "1.0.5",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
+      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js?token=GHSAT0AAAAAADIXDEGVJEUXWH4UZU5GZ3562E4PQPQ"
     }
   ]
 }

@@ -19,7 +19,7 @@ WidgetMetadata = {
   requiredVersion: "0.0.2",
   description: "手动输入播放链接并从服务器获取弹幕",
   author: "huangxd",
-  site: "https://raw.githubusercontent.com/wumingking",
+  site: "https://raw.githubusercontent.com/wumingking/Forward",
   globalParams: [
     {
       name: "danmu_server",

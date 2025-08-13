@@ -10,7 +10,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.0",
       "author": "阿米诺斯",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/yingshibangdan.js?token=GHSAT0AAAAAADIXDEGUWLNCGIUZENLGRL462E4P4AA"
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/yingshibangdan.js?token=GHSAT0AAAAAADIXDEGUHXW26TVWROUBG2NO2E4QIHQ"
     },
     {
       "id": "zhuijurili",
@@ -64,7 +64,7 @@
       "requiredVersion": "0.0.1",
       "version": "1.0.4",
       "author": "Evan",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/gerenzuopin.js?token=GHSAT0AAAAAADIXDEGVQ755NP7DM4XSRMXY2E4P2LA"
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zhuijurili.js?token=GHSAT0AAAAAADIXDEGUKKKPMI5TWWAUF74U2E4QKBQ"
     },
     {
       "id": "wuming.VOD",
@@ -109,7 +109,7 @@
       "requiredVersion": "0.0.2",
       "version": "1.0.2",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/shoudonglianjiedanmu.js?token=GHSAT0AAAAAADIXDEGUGQNY26RQIHQ6URQ22E4P3AQ"
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/shoudonglianjiedanmu.js?token=GHSAT0AAAAAADIXDEGVAAVVJQWRNENASWDG2E4QJUA"
     },
     {
       "id": "zidonglianjiedanmu",
@@ -118,7 +118,7 @@
       "requiredVersion": "0.0.2",
       "version": "1.0.5",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js?token=GHSAT0AAAAAADIXDEGVJ7GKEMGKMN3RV2RU2E4P4XA"
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js?token=GHSAT0AAAAAADIXDEGU76O35IJBOU72QBWU2E4QKNA"
     }
   ]
 }

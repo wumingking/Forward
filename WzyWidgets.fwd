@@ -40,15 +40,6 @@
       "url": "https://raw.githubusercontent.com/opix-maker/Forward/refs/heads/main/js/Bangumi_v2.0.0.js"
     },
     {
-      "id": "yatu",
-      "title": "雅图",
-      "description": "解析雅图每日放送更新以及各类排行榜",
-      "requiredVersion": "0.0.1",
-      "version": "1.0.6",
-      "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/yatu.js"
-    },
-    {
       "id": "gerenzuopin",
       "title": "个人作品",
       "description": "获取 TMDB 个人相关作品数据",
@@ -98,7 +89,7 @@
       "title": "自动链接弹幕",
       "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.0.9",
+      "version": "1.0.11",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
     },

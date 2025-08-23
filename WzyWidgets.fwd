@@ -26,7 +26,7 @@
       "title": "热门精选",
       "description": "获取最新热播剧和热门影片推荐",
       "requiredVersion": "0.0.1",
-      "version": "1.1.4",
+      "version": "1.1.7",
       "author": "两块",
       "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/HotPicks.js"
     },
@@ -58,20 +58,20 @@
       "url": "https://raw.githubusercontent.com/bemarkt/scripts/refs/heads/master/provider/Forward/widgets/vod.js"
     },
     {
-      "id": "movie_paradise",
-      "title": "在线影院",
-      "description": "获取在线电影、电视剧、动漫、综艺和短剧",
+      id: "cloud_cinema",
+      title: "云端影院",
+      description: "获取在线云端在线资源",
       "requiredVersion": "0.0.1",
-      "version": "1.0.0",
+      "version": "1.1.001",
       "author": "两块",
-      "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/MovieParadise.js"
+      "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/CloudCinema.js"
     },
     {
       "id": "tv_live",
       "title": "电视台",
       "description": "获取热门电视直播频道",
       "requiredVersion": "0.0.1",
-      "version": "1.0.1",
+      "version": "1.1.5",
       "author": "两块",
       "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js"
     },

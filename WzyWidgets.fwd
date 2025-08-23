@@ -80,7 +80,7 @@
       "title": "自动链接弹幕",
       "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.0.11",
+      "version": "1.0.12",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
     },
@@ -89,7 +89,7 @@
       "title": "手动链接弹幕",
       "description": "手动输入播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/shoudonglianjiedanmu.js"
     }

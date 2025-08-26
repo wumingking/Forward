@@ -15,7 +15,7 @@
 WidgetMetadata = {
   id: "shoudonglianjiedanmu",
   title: "手动链接弹幕",
-  version: "1.0.6",
+  version: "1.0.7",
   requiredVersion: "0.0.2",
   description: "手动输入播放链接并从服务器获取弹幕",
   author: "huangxd",
@@ -49,6 +49,10 @@ WidgetMetadata = {
         {
           title: "56uxi",
           value: "https://danmu.56uxi.com",
+        },
+        {
+          title: "lxlad",
+          value: "https://dm.lxlad.com",
         },
       ],
     },
@@ -1250,6 +1254,7 @@ async function getCommentsById(params) {
         "https://api.danmu.icu",
         "https://se.678.ooo",
         "https://danmu.56uxi.com",
+        "https://dm.lxlad.com",
     ];
 
     // 统一的请求函数
@@ -1268,6 +1273,7 @@ async function getCommentsById(params) {
                         "Content-Type": "application/json",
                         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                     },
+                    timeout: 15,
                 }
             );
 

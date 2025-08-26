@@ -15,7 +15,7 @@
 WidgetMetadata = {
   id: "zidonglianjiedanmu",
   title: "自动链接弹幕",
-  version: "1.0.13",
+  version: "1.0.16",
   requiredVersion: "0.0.2",
   description: "自动获取播放链接并从服务器获取弹幕",
   author: "huangxd",
@@ -49,6 +49,10 @@ WidgetMetadata = {
         {
           title: "56uxi",
           value: "https://danmu.56uxi.com",
+        },
+        {
+          title: "lxlad",
+          value: "https://dm.lxlad.com",
         },
       ],
     },
@@ -207,6 +211,22 @@ WidgetMetadata = {
         {
           title: "示例",
           value: "https://{domain}/api/{token}",
+        },
+      ],
+    },
+    {
+      name: "api_priority",
+      title: "弹幕API优先 (开启后准确性可能没有通过链接匹配的高)",
+      type: "enumeration",
+      value: "false",
+      enumOptions: [
+        {
+            title: "关",
+            value: "false",
+        },
+        {
+            title: "开",
+            value: "true",
         },
       ],
     },
@@ -1276,6 +1296,7 @@ async function getPlayurls(title, tmdbInfo, type, season) {
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
       },
+      timeout: 15,
     }
   );
 
@@ -1557,6 +1578,7 @@ async function getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_pollin
         "https://api.danmu.icu",
         "https://se.678.ooo",
         "https://danmu.56uxi.com",
+        "https://dm.lxlad.com",
     ];
 
     // 统一的请求函数
@@ -1575,6 +1597,7 @@ async function getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_pollin
                         "Content-Type": "application/json",
                         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                     },
+                    timeout: 15,
                 }
             );
 
@@ -1612,7 +1635,7 @@ async function getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_pollin
 async function getCommentsById(params) {
   const { danmu_server, danmu_server_polling, platform, vod_site, vod_site_polling, debug, commentId, seriesName,
       episodeName, airDate, runtime, premiereDate, link, videoUrl, season, episode, tmdbId, type, title,
-    danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5 } = params;
+    danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5, api_priority } = params;
 
   // 测试参数值
   // return printParams(seriesName, episodeName, airDate, runtime, premiereDate, season, episode, tmdbId);
@@ -1627,6 +1650,14 @@ async function getCommentsById(params) {
 
   const tmdbInfo = await fetchTmdbData(tmdbId, type);
 
+  if (api_priority === "true") {
+      const result = await getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeName, airDate,
+          danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5);
+      if (result) {
+        return result;
+      }
+  }
+
   const animes = await getPlayurls(title, tmdbInfo, type, season);
   console.log("animes.length:", animes.length);
 
@@ -1635,7 +1666,7 @@ async function getCommentsById(params) {
     if (playUrl) {
         return await getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_polling);
     }
-    if (!playUrl) {
+    if (!playUrl && api_priority === "false") {
         const result = await getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeName, airDate,
             danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5);
         if (result) {
@@ -1658,6 +1689,13 @@ async function getCommentsById(params) {
             playUrl = await getPlayurlFromVod(title, tmdbInfo, type, season, episode, episodeName, airDate, platform, vod_site, vod_site_polling);
             if (playUrl) {
                 return await getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_polling);
+            }
+            if (!playUrl && api_priority === "false") {
+                const result = await getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeName, airDate,
+                    danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5);
+                if (result) {
+                  return result;
+                }
             }
             if (!playUrl) {
                 const count = debug === "true" ? 24 : 1;
@@ -1685,6 +1723,13 @@ async function getCommentsById(params) {
           if (playUrl) {
               return await getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_polling);
           }
+          if (!playUrl && api_priority === "false") {
+              const result = await getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeName, airDate,
+                  danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5);
+              if (result) {
+                return result;
+              }
+          }
           if (!playUrl) {
               const count = debug === "true" ? 24 : 1;
               return generateDanmaku("【自动链接弹幕】：该集综艺没有集标题，匹配不了", count);
@@ -1709,6 +1754,7 @@ async function getCommentsById(params) {
                                     "Content-Type": "application/json",
                                     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
                                 },
+                                timeout: 15,
                             }
                         );
 
@@ -1762,6 +1808,13 @@ async function getCommentsById(params) {
       playUrl = await getPlayurlFromVod(title, tmdbInfo, type, season, episode, episodeName, airDate, platform, vod_site, vod_site_polling);
       if (playUrl) {
           return await getDanmuFromUrl(danmu_server, playUrl, debug, danmu_server_polling);
+      }
+        if (!playUrl && api_priority === "false") {
+          const result = await getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeName, airDate,
+              danmu_api_1, danmu_api_2, danmu_api_3, danmu_api_4, danmu_api_5);
+          if (result) {
+            return result;
+          }
       }
       if (!playUrl) {
           const count = debug === "true" ? 24 : 1;
@@ -1817,6 +1870,7 @@ async function getPlayurlFromVod(title, tmdbInfo, type, season, episode, episode
               "Content-Type": "application/json",
               "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
             },
+            timeout: 15,
           }
         );
         // 检查 response.data.list 是否存在且长度大于 0
@@ -2055,6 +2109,7 @@ async function getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeNa
             "Content-Type": "application/json",
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
           },
+          timeout: 15,
         }
       );
     } catch (error) {
@@ -2135,6 +2190,7 @@ async function getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeNa
           "Content-Type": "application/json",
           "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         },
+        timeout: 15,
       }
     );
 
@@ -2174,6 +2230,7 @@ async function getDanmuFromAPI(title, tmdbInfo, type, season, episode, episodeNa
             "Content-Type": "application/json",
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
           },
+          timeout: 15,
         }
       );
 

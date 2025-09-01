@@ -83,15 +83,6 @@
       "version": "1.0.20",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
-    },
-    {
-      "id": "shoudonglianjiedanmu",
-      "title": "手动链接弹幕",
-      "description": "手动输入播放链接并从服务器获取弹幕",
-      "requiredVersion": "0.0.2",
-      "version": "1.0.8",
-      "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/shoudonglianjiedanmu.js"
     }
   ]
 }

@@ -67,20 +67,20 @@
       "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/TvLive.js"
     },
     {
-      "id": "zidonglianjiedanmu",
-      "title": "自动链接弹幕",
+      "id": "logvar.danmu",
+      "title": "LogVar弹幕",
       "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.0.25",
+      "version": "2.0.0",
       "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/zidonglianjiedanmu.js"
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/logvardanmu.js"
     },
     {
       "id": "baranwang.danmu.universe",
       "title": "通用弹幕",
       "description": "通用弹幕插件，支持腾讯、优酷、爱奇艺、哔哩哔哩、芒果、人人等平台",
       "requiredVersion": "0.0.2",
-      "version": "0.9.1",
+      "version": "0.10.1",
       "author": "Baran",
       "url": "https://unpkg.com/@forward-widget/danmu-universe"
     },

@@ -35,7 +35,7 @@
       "title": "LogVar弹幕",
       "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "2.0.0",
+      "version": "2.0.3",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/logvardanmu.js"
     },
@@ -56,6 +56,15 @@
       "version": "1.0.1",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/danmu_api.js"
+    },
+    {
+      "id": "text.danmu",
+      "title": "测试弹幕",
+      "description": "自动获取播放链接并从服务器获取弹幕",
+      "requiredVersion": "0.0.2",
+      "version": "1.0.0",
+      "author": "wzy",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/textdanmu.js"
     }
   ]
 }

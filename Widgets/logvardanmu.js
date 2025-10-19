@@ -59,19 +59,7 @@ WidgetMetadata = {
       placeholders: [
         {
           title: "配置1",
-          value: "vod@https://www.caiji.cyou,vod2@https://gctf.tfdh.top,vod3@https://zy.xmm.hk",
-        },
-        {
-          title: "配置2",
-          value: "vod@https://www.caiji.cyou",
-        },
-        {
-          title: "配置3",
-          value: "vod@https://www.caiji.cyou,vod2@https://zy.xmm.hk",
-        },
-        {
-          title: "配置4",
-          value: "vod@https://www.caiji.cyou,vod2@https://gctf.tfdh.top",
+          value: "金蝉@https://zy.jinchancaiji.com,789@https://www.caiji.cyou,听风@https://gctf.tfdh.top",
         },
       ],
     },
@@ -215,7 +203,7 @@ function resolveOtherServer(other_server) {
   return DEFAULT_OTHER_SERVER;
 }
 
-const DEFAULT_VOD_SERVERS = "vod@https://www.caiji.cyou"; // 默认 vod站点配置，格式：名称@URL,名称@URL
+const DEFAULT_VOD_SERVERS = "金蝉@https://zy.jinchancaiji.com,789@https://www.caiji.cyou,听风@https://gctf.tfdh.top"; // 默认 vod站点配置，格式：名称@URL,名称@URL
 let vodServers = [];
 
 function resolveVodServers(vod_servers) {

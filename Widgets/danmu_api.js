@@ -14,7 +14,7 @@
  */
 WidgetMetadata = {
   id: "forward.auto.danmu_api",
-  title: "danmu_api弹幕",
+  title: "api弹幕",
   version: "1.0.3",
   requiredVersion: "0.0.2",
   description: "从danmu_api获取弹幕",

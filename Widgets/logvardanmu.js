@@ -8633,6 +8633,17 @@ async function getSegmentComment(segment, queryFormat) {
     );
   }
 }
+
+// forward/forward-widget.js
+var wv = true ? "1.10.0" : Globals.VERSION;
+WidgetMetadata = {
+  id: "logvar.danmu",
+  title: "LogVar弹幕",
+  version: wv,
+  requiredVersion: "0.0.2",
+  description: "获取弹幕",
+  author: "huangxd",
+  site: "https://raw.githubusercontent.com/wumingking/Forward",
   globalParams: [
     // 源配置
     {

@@ -22,20 +22,11 @@
       "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/HotPicks.js"
     },
     {
-      "id": "forward.auto.danmu_api",
-      "title": "api弹幕",
-      "description": "从danmu_api获取弹幕",
-      "requiredVersion": "0.0.2",
-      "version": "1.0.3",
-      "author": "huangxd",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/danmu_api.js"
-    },
-    {
       "id": "logvar.danmu",
       "title": "LogVar弹幕",
       "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.10.0",
+      "version": "1.10.2",
       "author": "huangxd",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/logvardanmu.js"
     }

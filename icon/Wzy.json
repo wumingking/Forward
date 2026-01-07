@@ -1,58 +1,14 @@
 {
-  "name": "WForward",
+  "name": "WF",
   "description": "",
   "icons": [
-    {
-      "name": "白鹿",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/白鹿.png"
-    },
-    {
-      "name": "孟子义",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/孟子义.png"
-    },
-    {
-      "name": "刘浩存",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/刘浩存.png"
-    },
-    {
-      "name": "卢昱晓",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/卢昱晓.png"
-    },
-    {
-      "name": "周也",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/周也.png"
-    },
-    {
-      "name": "宋祖儿",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/宋祖儿.png"
-    },
-    {
-      "name": "王楚然",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/王楚然.png"
-    },
-    {
-      "name": "田曦薇",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/田曦薇.png"
-    },
-    {
-      "name": "虞书欣",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/虞书欣.png"
-    },
-    {
-      "name": "陈都灵",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/陈都灵.png"
-    },
-    {
-      "name": "张若昀",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/张若昀.png"
-    },
     {
       "name": "中国电影集团",
       "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/中国电影集团.png"
     },
     {
-      "name": "SaoDu",
-      "url": "https://raw.githubusercontent.com/coisini114/Forward/refs/heads/main/icon/SaoDu.png"
+      "name": "ETFLIX",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/ETFLIX.png"
     },
     {
       "name": "hohai",

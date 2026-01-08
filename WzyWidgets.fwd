@@ -1,6 +1,6 @@
 {
   "title": "Wzy's widgets",
-  "description": "YYDS",
+  "description": "😶‍🌫️",
   "icon": "https://raw.githubusercontent.com/InchStudio/ForwardWidgets/refs/heads/master/icon.png",
   "widgets": [
     {
@@ -8,9 +8,9 @@
       "title": "影视榜单",
       "description": "影视动画榜单",
       "requiredVersion": "0.0.2",
-      "version": "1.3.9",
+      "version": "1.5.0",
       "author": "阿米诺斯",
-      "url": "https://for-ward.vercel.app/Widgets/combined.js"
+      "url": "https://for-ward.vercel.app/Widgets/Move_list.js"
     },
     {
       "id": "hot_picks",

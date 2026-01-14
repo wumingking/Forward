@@ -19,8 +19,16 @@
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/hualu.png"
     },
     {
-      "name": "wuju",
+      "name": "无拘",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/wuju.png"
+    },
+    {
+      "name": "周三晚",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/周三晚.png"
+    },
+    {
+      "name": "HG",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/hg.png"
     }
   ]
 }

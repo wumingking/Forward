@@ -18,7 +18,7 @@ WidgetMetadata = {
   version: "1.0.0",
   requiredVersion: "0.0.2",
   description: "连接内网弹幕服务器接口获取弹幕",
-  author: "huangxd",
+  author: "zy",
   site: "https://github.com/huangxd-/ForwardWidgets",
   globalParams: [
     {

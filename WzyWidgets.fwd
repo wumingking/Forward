@@ -1,5 +1,5 @@
 {
-  "title": "Wzy's widgets",
+  "title": "zy's widgets",
   "description": "😶‍🌫️",
   "icon": "https://raw.githubusercontent.com/InchStudio/ForwardWidgets/refs/heads/master/icon.png",
   "widgets": [
@@ -9,7 +9,7 @@
       "description": "影视动画榜单",
       "requiredVersion": "0.0.2",
       "version": "1.5.0",
-      "author": "阿米诺斯",
+      "author": "zy",
       "url": "https://for-ward.vercel.app/Widgets/Move_list.js"
     },
     {
@@ -27,7 +27,7 @@
       "description": "连接内网弹幕服务器接口获取弹幕",
       "requiredVersion": "0.0.2",
       "version": "1.0.0",
-      "author": "huangxd",
+      "author": "zy",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/danmu_api.js"
     },
     {
@@ -35,8 +35,8 @@
       "title": "本地",
       "description": "自动获取播放链接并从服务器获取弹幕",
       "requiredVersion": "0.0.2",
-      "version": "1.13.4",
-      "author": "huangxd",
+      "version": "1.15.2",
+      "author": "zy",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/logvardanmu.js"
     }
   ]

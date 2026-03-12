@@ -4,15 +4,6 @@
   "icon": "https://raw.githubusercontent.com/InchStudio/ForwardWidgets/refs/heads/master/icon.png",
   "widgets": [
     {
-      "id": "yingshibangdan",
-      "title": "影视榜单",
-      "description": "影视动画榜单",
-      "requiredVersion": "0.0.2",
-      "version": "1.5.0",
-      "author": "zy",
-      "url": "https://for-ward.vercel.app/Widgets/Move_list.js"
-    },
-    {
       "id": "hot_picks",
       "title": "热门精选",
       "description": "获取最新热播剧和热门影片推荐",
@@ -20,15 +11,6 @@
       "version": "1.2.1",
       "author": "两块",
       "url": "https://raw.githubusercontent.com/2kuai/ForwardWidgets/refs/heads/main/Widgets/HotPicks.js"
-    },
-    {
-      "id": "auto.danmu_api",
-      "title": "内网",
-      "description": "连接内网弹幕服务器接口获取弹幕",
-      "requiredVersion": "0.0.2",
-      "version": "1.0.0",
-      "author": "zy",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/danmu_api.js"
     },
     {
       "id": "logvar.danmu",

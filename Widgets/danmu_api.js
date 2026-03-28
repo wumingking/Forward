@@ -7,7 +7,7 @@ WidgetMetadata = {
   title: "内网弹幕",
   version: "1.0.0",
   requiredVersion: "0.0.2",
-  description: "连接内网弹幕服务器接口获取弹幕（极速优化版）",
+  description: "连接内网弹幕服务器接口获取弹幕",
   author: "zy",
   site: "https://github.com/huangxd-/ForwardWidgets",
   globalParams: [

@@ -20,15 +20,6 @@
       "version": "1.0.0",
       "author": "zy",
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/danmu_api.js"
-    },
-    {
-      "id": "logvar.danmu",
-      "title": "本地弹幕",
-      "description": "自动获取播放链接并从服务器获取弹幕",
-      "requiredVersion": "0.0.2",
-      "version": "1.15.2",
-      "author": "zy",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/Widgets/logvardanmu.js"
     }
   ]
 }

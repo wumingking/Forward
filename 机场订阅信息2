@@ -1,0 +1,552 @@
+/**
+ * 多机场订阅流量小组件
+ * UI 风格：深色圆角卡片，左标签右数值，上传/下载图标行
+ *
+ * 环境变量（最多 5 组）:
+ *   名称1 / 网址1 / 重置1
+ *   名称2 / 网址2 / 重置2  ... 名称5 / 网址5 / 重置5
+ *   重置N = 每月几号重置（可选）
+ *
+ * 缓存控制:
+ *   缓存    - 0 关闭 / 1 开启（默认 1）
+ *   缓存时间 - 缓存有效小时数 1~24（默认 12）
+ *
+ * 预警规则:
+ *   到期前 3 天 → 名称变红 #FF453A
+ *   重置前 2 天 → 名称变黄 #FF9F0A
+ */
+
+export default async function (ctx) {
+  const MAX = 5;
+  const slots = [];
+
+  for (let i = 1; i <= MAX; i++) {
+    const url = (ctx.env[`网址${i}`] || '').trim();
+    if (!url) continue;
+    slots.push({
+      name: (ctx.env[`名称${i}`] || '').trim() || inferName(url),
+      url,
+      resetDay: parseInt(ctx.env[`重置${i}`] || '', 10) || null,
+    });
+  }
+
+  const cacheEnabled = (ctx.env['缓存'] || '1').trim() !== '0';
+  const cacheHours   = Math.min(24, Math.max(1, parseInt(ctx.env['缓存时间'] || '12', 10) || 12));
+  const cacheTTL     = cacheHours * 60 * 60 * 1000;
+
+  const family       = ctx.widgetFamily || 'systemMedium';
+  const refreshAfter = new Date(Date.now() + cacheTTL).toISOString();
+
+  if (!slots.length) {
+    return noConfigWidget(family, refreshAfter);
+  }
+
+  // 环境变量指纹：name + url + resetDay 序列化，用于检测变更或新增
+  const envFingerprint = slots.map(s => `${s.name}|${s.url}|${s.resetDay ?? ''}`).join(';;');
+
+  let results = null;
+
+  if (cacheEnabled) {
+    try {
+      const cacheRaw = ctx.storage.get('traffic_cache');
+      if (cacheRaw) {
+        const cache = JSON.parse(cacheRaw);
+        const age     = Date.now() - (cache.ts || 0);
+        const sameEnv = cache.fingerprint === envFingerprint;
+        if (sameEnv && age < cacheTTL && Array.isArray(cache.data) && cache.data.length === slots.length) {
+          results = cache.data.map((d, i) => ({
+            ...d,
+            remainDays: slots[i]?.resetDay ? getRemainingDays(slots[i].resetDay) : null,
+          }));
+        }
+      }
+    } catch (_) {}
+  }
+
+  if (!results) {
+    results = await Promise.all(slots.map(s => fetchInfo(ctx, s)));
+    if (cacheEnabled) {
+      try {
+        ctx.storage.set('traffic_cache', JSON.stringify({
+          ts:          Date.now(),
+          fingerprint: envFingerprint,
+          data:        results.map(r => ({ ...r, remainDays: null })),
+        }));
+      } catch (_) {}
+    }
+  }
+
+  results = sortResults(results);
+
+  if (family === 'systemSmall') return buildSmall(results[0], refreshAfter);
+  if (family === 'systemLarge') return buildLarge(results, refreshAfter);
+  return buildMedium(results, refreshAfter);
+}
+
+// ─────────────────────────────────────────────
+// 名称颜色：到期前3天红，重置前2天黄，否则白
+// ─────────────────────────────────────────────
+
+function nameColor(result) {
+  if (result.error) return '#FFFFFF';
+  if (result.expire) {
+    const days = Math.ceil((result.expire * 1000 - Date.now()) / 86400000);
+    if (days >= 0 && days <= 3) return '#FF453A';
+  }
+  if (result.remainDays != null && result.remainDays <= 2) return '#FF9F0A';
+  return '#FFFFFF';
+}
+
+// ─────────────────────────────────────────────
+// 卡片组件（核心 UI）
+// ─────────────────────────────────────────────
+
+function buildCard(result) {
+  if (result.error) {
+    return {
+      type: 'stack',
+      direction: 'column',
+      backgroundColor: '#1C1C1E',
+      borderRadius: 14,
+      padding: [10, 12],
+      gap: 5,
+      frame: { maxWidth: Infinity, maxHeight: Infinity },
+      children: [
+        txt(result.name, { size: 'headline', weight: 'bold' }, nameColor(result)),
+        divider(),
+        row(
+          txt('状态', { size: 'caption1' }, '#8E8E93'),
+          txt('获取失败', { size: 'caption1', weight: 'semibold' }, '#FF453A')
+        ),
+      ],
+    };
+  }
+
+  const used     = result.used;
+  const total    = result.totalBytes;
+  const remain   = Math.max(0, total - used);
+  const upload   = result.upload;
+  const download = result.download;
+  const percent  = total > 0 ? used / total * 100 : 0;
+  const color    = usageColor(percent);
+
+  const children = [];
+
+  children.push(txt(result.name, { size: 'headline', weight: 'bold' }, nameColor(result)));
+  children.push(divider());
+
+  children.push(row(
+    txt('Left',  { size: 'caption1' }, '#8E8E93'),
+    txt(smartBytes(remain), { size: 'caption1', weight: 'semibold' }, '#FFFFFF')
+  ));
+  children.push(row(
+    txt('Total', { size: 'caption1' }, '#8E8E93'),
+    txt(smartBytes(total),  { size: 'caption1', weight: 'semibold' }, '#FFFFFF')
+  ));
+
+  children.push(progressBar(percent, color));
+
+  children.push(row(
+    txt('Status', { size: 'caption2' }, '#8E8E93'),
+    {
+      type: 'stack',
+      direction: 'row',
+      alignItems: 'center',
+      gap: 3,
+      children: [
+        txt(`${percent.toFixed(1)}%`, { size: 'caption1', weight: 'semibold' }, color),
+        {
+          type: 'stack',
+          direction: 'column',
+          gap: 3,
+          children: [
+            { type: 'stack', width: 7, height: 7, backgroundColor: percent >= 90 ? '#FF453A' : '#30D158', borderRadius: 99, children: [] },
+            { type: 'stack', width: 7, height: 7, backgroundColor: '#3A3A3C', borderRadius: 99, children: [] },
+          ],
+        },
+      ],
+    }
+  ));
+
+  children.push(divider());
+
+  children.push({
+    type: 'stack',
+    direction: 'row',
+    alignItems: 'center',
+    children: [
+      ioIcon('arrow.down.circle.fill', '#30D158'),
+      sp(6),
+      txt(smartBytes(download), { size: 'caption1', weight: 'medium' }, '#FFFFFF'),
+      { type: 'spacer' },
+      ioIcon('arrow.up.circle.fill', '#636366'),
+      sp(6),
+      txt(smartBytes(upload), { size: 'caption1', weight: 'medium' }, '#FFFFFF'),
+    ],
+  });
+
+  return {
+    type: 'stack',
+    direction: 'column',
+    backgroundColor: '#1C1C1E',
+    borderRadius: 14,
+    padding: [10, 12],
+    gap: 5,
+    frame: { maxWidth: Infinity, maxHeight: Infinity },
+    children,
+  };
+}
+
+function buildCardCompact(result) {
+  if (result.error) {
+    return {
+      type: 'stack',
+      direction: 'column',
+      backgroundColor: '#1C1C1E',
+      borderRadius: 14,
+      padding: [10, 12],
+      gap: 6,
+      frame: { maxWidth: Infinity, maxHeight: Infinity },
+      children: [
+        txt(result.name, { size: 'headline', weight: 'bold' }, nameColor(result)),
+        divider(),
+        txt('获取失败', { size: 'caption1' }, '#FF453A'),
+      ],
+    };
+  }
+
+  const used    = result.used;
+  const total   = result.totalBytes;
+  const remain  = Math.max(0, total - used);
+  const percent = total > 0 ? used / total * 100 : 0;
+  const color   = usageColor(percent);
+
+  return {
+    type: 'stack',
+    direction: 'column',
+    backgroundColor: '#1C1C1E',
+    borderRadius: 14,
+    padding: [10, 12],
+    gap: 6,
+    frame: { maxWidth: Infinity, maxHeight: Infinity },
+    children: [
+      txt(result.name, { size: 'headline', weight: 'bold' }, nameColor(result)),
+      divider(),
+      row(
+        txt('Left',  { size: 'caption1' }, '#8E8E93'),
+        txt(smartBytes(remain), { size: 'caption1', weight: 'semibold' }, '#FFFFFF')
+      ),
+      row(
+        txt('Total', { size: 'caption1' }, '#8E8E93'),
+        txt(smartBytes(total),  { size: 'caption1', weight: 'semibold' }, '#FFFFFF')
+      ),
+      progressBar(percent, color),
+      row(
+        txt(`${percent.toFixed(1)}%`, { size: 'caption2', weight: 'semibold' }, color),
+        txt('', { size: 'caption2' }, '#636366')
+      ),
+      divider(),
+      {
+        type: 'stack',
+        direction: 'row',
+        alignItems: 'center',
+        children: [
+          ioIcon('arrow.down.circle.fill', '#30D158'),
+          sp(4),
+          txt(smartBytes(result.download), { size: 'caption2', weight: 'medium' }, '#FFFFFF'),
+          { type: 'spacer' },
+          ioIcon('arrow.up.circle.fill', '#636366'),
+          sp(4),
+          txt(smartBytes(result.upload), { size: 'caption2', weight: 'medium' }, '#FFFFFF'),
+        ],
+      },
+    ],
+  };
+}
+
+// ─────────────────────────────────────────────
+// 布局：Small / Medium / Large
+// ─────────────────────────────────────────────
+
+function buildSmall(result, refreshAfter) {
+  return {
+    type: 'widget',
+    padding: 0,
+    backgroundColor: '#000000',
+    refreshAfter,
+    children: [buildCard(result)],
+  };
+}
+
+function buildMedium(results, refreshAfter) {
+  const cards = results.slice(0, 2).map(r => ({
+    ...buildCard(r),
+    flex: 1,
+  }));
+  return {
+    type: 'widget',
+    padding: 12,
+    backgroundColor: '#000000',
+    refreshAfter,
+    children: [
+      {
+        type: 'stack',
+        direction: 'row',
+        gap: 10,
+        frame: { maxWidth: Infinity, maxHeight: Infinity },
+        children: cards,
+      },
+    ],
+  };
+}
+
+function buildLarge(results, refreshAfter) {
+  const cards = results.slice(0, 4).map(buildCard);
+  return {
+    type: 'widget',
+    direction: 'column',
+    padding: 12,
+    gap: 10,
+    backgroundColor: '#000000',
+    refreshAfter,
+    children: [
+      {
+        type: 'stack',
+        direction: 'row',
+        gap: 10,
+        children: cards.slice(0, 2),
+      },
+      {
+        type: 'stack',
+        direction: 'row',
+        gap: 10,
+        children: cards.slice(2, 4),
+      },
+    ],
+  };
+}
+
+function noConfigWidget(family, refreshAfter) {
+  return {
+    type: 'widget',
+    padding: 14,
+    backgroundColor: '#1C1C1E',
+    refreshAfter,
+    children: [
+      txt('流量小组件', { size: 'headline', weight: 'bold' }, '#FFFFFF'),
+      { type: 'spacer', length: 8 },
+      txt('请填写 网址1 环境变量', { size: 'caption1' }, '#8E8E93'),
+    ],
+  };
+}
+
+// ─────────────────────────────────────────────
+// DSL 原语
+// ─────────────────────────────────────────────
+
+function txt(text, font, textColor) {
+  return { type: 'text', text: String(text), font, textColor, maxLines: 1, minScale: 0.6 };
+}
+
+function row(left, right) {
+  return {
+    type: 'stack',
+    direction: 'row',
+    alignItems: 'center',
+    children: right ? [left, { type: 'spacer' }, right] : [left],
+  };
+}
+
+function divider() {
+  return {
+    type: 'stack',
+    direction: 'row',
+    frame: { maxWidth: Infinity, height: 1 },
+    backgroundColor: '#2C2C2E',
+    children: [],
+  };
+}
+
+function sp(length) {
+  return { type: 'spacer', length };
+}
+
+function progressBar(percent, color) {
+  const filled = Math.max(0.001, Math.min(percent, 100));
+  const empty  = Math.max(0.001, 100 - filled);
+  return {
+    type: 'stack',
+    direction: 'row',
+    height: 4,
+    gap: 0,
+    borderRadius: 2,
+    backgroundColor: '#3A3A3C',
+    children: [
+      {
+        type: 'stack',
+        flex: filled,
+        height: 4,
+        backgroundColor: color,
+        borderRadius: 2,
+        children: [],
+      },
+      {
+        type: 'stack',
+        flex: empty,
+        height: 4,
+        children: [],
+      },
+    ],
+  };
+}
+
+function ioIcon(sfName, color) {
+  return {
+    type: 'stack',
+    width: 22,
+    height: 22,
+    backgroundColor: '#2C2C2E',
+    borderRadius: 99,
+    alignItems: 'center',
+    justifyContent: 'center',
+    children: [{
+      type: 'image',
+      src: `sf-symbol:${sfName}`,
+      width: 14,
+      height: 14,
+      color,
+    }],
+  };
+}
+
+// ─────────────────────────────────────────────
+// 数据获取
+// ─────────────────────────────────────────────
+
+const UA_LIST = [
+  { 'User-Agent': 'Quantumult%20X' },
+  { 'User-Agent': 'clash-verge-rev/2.3.1' },
+  { 'User-Agent': 'mihomo/1.19.3' },
+  { 'User-Agent': 'Surge iOS' },
+];
+
+async function fetchInfo(ctx, slot) {
+  const urls = buildVariants(slot.url);
+
+  for (const method of ['head', 'get']) {
+    for (const url of urls) {
+      for (const headers of UA_LIST) {
+        try {
+          const resp = await ctx.http[method](url, { headers, timeout: 9000 });
+          const raw  = resp.headers['subscription-userinfo'] ||
+                       resp.headers['Subscription-Userinfo'] || '';
+          const info = parseUserInfo(raw);
+          if (!info) continue;
+
+          const upload   = info.upload   || 0;
+          const download = info.download || 0;
+          const total    = info.total    || 0;
+          const used     = upload + download;
+          const percent  = total > 0 ? used / total * 100 : 0;
+
+          return {
+            name: slot.name,
+            error: false,
+            used,
+            upload,
+            download,
+            totalBytes: total,
+            percent,
+            expire: info.expire || null,
+            remainDays: slot.resetDay ? getRemainingDays(slot.resetDay) : null,
+          };
+        } catch (_) {}
+      }
+    }
+  }
+
+  return {
+    name: slot.name,
+    error: true,
+    used: 0, upload: 0, download: 0,
+    totalBytes: 0, percent: 0,
+    expire: null,
+    remainDays: slot.resetDay ? getRemainingDays(slot.resetDay) : null,
+  };
+}
+
+function buildVariants(url) {
+  const seen = new Set();
+  const out  = [];
+  function add(u) { if (u && !seen.has(u)) { seen.add(u); out.push(u); } }
+  add(url);
+  add(withParam(url, 'flag',   'clash'));
+  add(withParam(url, 'flag',   'meta'));
+  add(withParam(url, 'target', 'clash'));
+  return out;
+}
+
+function withParam(url, k, v) {
+  return `${url}${url.includes('?') ? '&' : '?'}${k}=${encodeURIComponent(v)}`;
+}
+
+function parseUserInfo(header) {
+  if (!header) return null;
+  const pairs = header.match(/\w+=[\d.eE+-]+/g) || [];
+  if (!pairs.length) return null;
+  return Object.fromEntries(pairs.map(p => {
+    const [k, v] = p.split('=');
+    return [k, Number(v)];
+  }));
+}
+
+// ─────────────────────────────────────────────
+// 工具函数
+// ─────────────────────────────────────────────
+
+function sortResults(results) {
+  return results.slice().sort((a, b) => {
+    if (a.error && !b.error) return -1;
+    if (!a.error && b.error) return 1;
+    const aRemain = a.error ? -1 : Math.max(0, a.totalBytes - a.used);
+    const bRemain = b.error ? -1 : Math.max(0, b.totalBytes - b.used);
+    if (aRemain !== bRemain) return aRemain - bRemain;
+    return (b.percent || 0) - (a.percent || 0);
+  });
+}
+
+function usageColor(percent) {
+  if (percent >= 90) return '#FF453A';
+  if (percent >= 70) return '#FF9F0A';
+  return '#30D158';
+}
+
+function smartBytes(bytes) {
+  if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
+  const gb = bytes / 1073741824;
+  const mb = bytes / 1048576;
+  if (gb >= 100) return `${gb.toFixed(0)}GB`;
+  if (gb >= 10)  return `${gb.toFixed(1)}GB`;
+  if (gb >= 1)   return `${gb.toFixed(2)}GB`;
+  if (mb >= 100) return `${mb.toFixed(0)}MB`;
+  if (mb >= 1)   return `${mb.toFixed(1)}MB`;
+  return `${(bytes / 1024).toFixed(1)}KB`;
+}
+
+function fmtDate(ts) {
+  const d = new Date((ts > 1e12 ? ts : ts * 1000));
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function getRemainingDays(resetDay) {
+  const now  = new Date();
+  const day  = now.getDate();
+  let next   = new Date(now.getFullYear(), now.getMonth(), resetDay);
+  if (day >= resetDay) next = new Date(now.getFullYear(), now.getMonth() + 1, resetDay);
+  return Math.max(0, Math.ceil((next - now) / 86400000));
+}
+
+function inferName(url) {
+  const m = url.match(/^https?:\/\/([^\/?#]+)/i);
+  return m ? m[1].split('.').slice(-2, -1)[0] || m[1] : '订阅';
+}

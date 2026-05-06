@@ -1,0 +1,15 @@
+{
+  "createdAt" : "2026-05-03T18:08:30Z",
+  "defaultPreviewFamily" : "medium",
+  "enabledFamilies" : [
+    "small",
+    "medium",
+    "large",
+    "circular",
+    "rectangular",
+    "inline"
+  ],
+  "id" : "41a8102d-e027-4599-bedf-72f1de1cd16d",
+  "name" : "首页小组件",
+  "updatedAt" : "2026-05-03T18:08:30Z"
+}

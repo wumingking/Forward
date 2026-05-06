@@ -1,0 +1,22 @@
+[
+  {
+    "createdAt" : "2026-04-06T15:35:32Z",
+    "iconColor" : "purple",
+    "id" : "5B849C48-003E-40CE-A3F9-D6ADC26BC132",
+    "name" : "示例应用",
+    "orderedAppIDs" : [
+      "48A077DB-0F5D-4B00-8F62-86845BDDFF88",
+      "0867BDBA-6E6A-4484-9273-05333D898D62",
+      "D360578E-D23A-48BD-9B39-37B8578E0783"
+    ]
+  },
+  {
+    "createdAt" : "2026-04-06T15:35:32Z",
+    "iconColor" : "red",
+    "id" : "FECC5773-BA93-47E1-9CEF-838026162688",
+    "name" : "示例游戏",
+    "orderedAppIDs" : [
+
+    ]
+  }
+]

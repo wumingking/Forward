@@ -35,21 +35,21 @@
     {
       "index": 5,
       "name": "105°",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/005_105%C2%B0.png",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/005_105°.png",
       "file": "素材/005_105°.png",
       "size": 56323
     },
     {
       "index": 6,
       "name": "105°_1",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/006_105%C2%B0_1.png",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/006_105°_1.png",
       "file": "素材/006_105°_1.png",
       "size": 96541
     },
     {
       "index": 7,
       "name": "105°_2",
-      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/007_105%C2%B0_2.png",
+      "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/007_105°_2.png",
       "file": "素材/007_105°_2.png",
       "size": 57526
     },
@@ -59,7 +59,7 @@
       "url": "https://raw.githubusercontent.com/wumingking/Forward/refs/heads/main/icon/素材/008_1111.png",
       "file": "素材/008_1111.png",
       "size": 96182
-    },
+    }，
     {
       "index": 9,
       "name": "115",

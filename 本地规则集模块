@@ -1,5 +1,0 @@
-[Rule]
-# 授权验证域名，直连
-DOMAIN-SUFFIX,egernlicense.com,DIRECT
-# Sentry 错误上报，拦截
-DOMAIN-SUFFIX,ingest.sentry.io,REJECDOMAINT

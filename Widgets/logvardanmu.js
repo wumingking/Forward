@@ -18341,7 +18341,7 @@ async function getSegmentComment(segment, queryFormat) {
 var wv = true ? "1.19.3" : Globals.VERSION;
 WidgetMetadata = {
   id: "logvar.danmu",
-  title: "本地",
+  title: "本地弹幕",
   version: wv,
   requiredVersion: "0.0.2",
   description: "获取弹幕",
